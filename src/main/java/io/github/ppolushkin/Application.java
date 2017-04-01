@@ -1,5 +1,6 @@
 package io.github.ppolushkin;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,11 +12,11 @@ import java.io.IOException;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private DocWriter docWriter;
+    private DocxTemplateService docxTemplateService;
 
     @Override
-    public void run(String... args) throws IOException {
-        docWriter.makeSimpleDocFile();
+    public void run(String... args) throws IOException, InvalidFormatException {
+        docxTemplateService.fillTemplate();
     }
 
     public static void main(String[] args) throws Exception {
