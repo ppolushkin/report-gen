@@ -14,9 +14,13 @@ public class Application implements CommandLineRunner {
     @Autowired
     private DocxTemplateService docxTemplateService;
 
+    @Autowired
+    private ExcelReadService excelReadService;
+
     @Override
     public void run(String... args) throws IOException, InvalidFormatException {
-        docxTemplateService.fillTemplate();
+//        docxTemplateService.fillTemplate();
+        excelReadService.read();
     }
 
     public static void main(String[] args) throws Exception {
