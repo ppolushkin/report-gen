@@ -7,11 +7,13 @@ import org.apache.poi.hwpf.usermodel.Paragraph;
 import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.hwpf.usermodel.Section;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -25,13 +27,9 @@ public class DocTemplateService implements TemplateService {
 
     @Override
     public void open(String file) throws IOException {
-        URL res = getClass().getClassLoader().getResource(file);
-        HWPFDocument document = null;
-        if (res != null) {
-            document = new HWPFDocument(new POIFSFileSystem(
-                    new File(res.getPath())));
+        try(InputStream inputStream = new ClassPathResource(file).getInputStream()) {
+            this.document = new HWPFDocument(new POIFSFileSystem(inputStream));
         }
-        this.document = document;
     }
 
     @Override
