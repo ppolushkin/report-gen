@@ -4,23 +4,38 @@ import io.github.ppolushkin.domain.ExcelReader;
 import io.github.ppolushkin.domain.ReportData;
 import io.github.ppolushkin.domain.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-    private String excelLocation = "C:\\TEMP\\Ответ Real-Time.xls";
+    private static final Logger logger = Logger.getLogger(Application.class.getName());
 
-    private String sheetName = "ЛИСТ10";
+    @Value("${excelLocation}")
+    private String excelLocation;
 
-    private int startLine = 20614;
+    @Value("Лист${sheetNumber}")
+    private String sheetName;;
 
-    private String outputFolder = "C:\\TEMP\\";
+    @Value("${startLine}")
+    private int startLine;
+
+    @Value("${outputFolder}")
+    private String outputFolder;
 
     @Autowired
     private ExcelReader excelReader;
@@ -28,15 +43,16 @@ public class Application implements CommandLineRunner {
     @Autowired
     private TemplateService templateService;
 
+    @PostConstruct
+    private void init() {
+        logger.log(Level.INFO, "EXCEL LOCATION " + excelLocation);
+        logger.log(Level.INFO, "SHEET NAME " + sheetName);
+        logger.log(Level.INFO, "START LINE " + startLine);
+        logger.log(Level.INFO, "OUTPUT FOLDER " + outputFolder);
+    }
+
     @Override
     public void run(String... args) throws Exception {
-
-        if (args.length == 4) {
-            excelLocation = args[0];
-            sheetName = args[1];
-            startLine = Integer.valueOf(args[2]);
-            outputFolder = args[3];
-        }
 
         excelReader.loadWorkBook(excelLocation, sheetName);
 
