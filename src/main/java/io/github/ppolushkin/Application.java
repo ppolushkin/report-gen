@@ -8,11 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -29,7 +24,7 @@ public class Application implements CommandLineRunner {
     private String excelLocation;
 
     @Value("Лист${sheetNumber}")
-    private String sheetName;;
+    private String sheetName;
 
     @Value("${startLine}")
     private int startLine;

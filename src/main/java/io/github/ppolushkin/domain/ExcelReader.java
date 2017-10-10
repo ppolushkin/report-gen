@@ -39,7 +39,7 @@ public interface ExcelReader {
 
     default String readString(String cellLocation) {
         Cell cell = getCell(getWorkBook(), getWorkSheet(), cellLocation);
-        return cell.getStringCellValue();
+        return cell == null ? "" : cell.getStringCellValue();
     }
 
 

@@ -9,3 +9,9 @@ outputFolder - директория в которую будут записан�
 Первая дата - дата рождения, затем идет дата забора анализов.
 
 Чтобы запустить программу, нужно выполнить generate.bat
+
+# For development
+1) Copy Real-Time.xls to C:/TEMP/Real-Time.xls   
+2) Run Application main()
+
+Note: settings are in application.properties
