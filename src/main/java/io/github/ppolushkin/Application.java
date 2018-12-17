@@ -93,7 +93,13 @@ public class Application implements CommandLineRunner {
 
 
     private void generateReport(ReportData reportData) throws Exception {
-        templateService.open("template.doc");
+        String template;
+        if ("ХЕЛИКС".equalsIgnoreCase(reportData.department) || "ИНВИТРО".equalsIgnoreCase(reportData.department)) {
+            template = "bonne-template.doc";
+        } else {
+            template = "template.doc";
+        }
+        templateService.open(template);
         templateService.replace("TESTER", reportData.tester);
         templateService.replace("PATIENT", reportData.patient);
         templateService.replace("SEX", reportData.sex);
