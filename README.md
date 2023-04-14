@@ -1,7 +1,11 @@
+# Report-gen
 
-# Build
+## Build
 `mvnw clean package`
 
-# For development
-1) Make sure `src/resource/application.properties` is correct and `Real-Time.xls` is on place.   
-2) Run Application main() or `mvnw spring-boot:run`
+## Develop
+- Make sure `src/resource/application.properties` is correct and `Real-Time.xls` is on place.   
+- Run Application main() or `mvnw spring-boot:run`
+
+## Install and Use
+[prod/README.md](prod/README.md)
