@@ -1,1 +1,0 @@
-jre1.8.0_131\bin\java -Xmx2100M -jar report-generator-1.0.jar --spring.config.location=application.properties > logs.txt 2>&1
