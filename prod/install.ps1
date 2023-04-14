@@ -13,3 +13,4 @@ Invoke-WebRequest -Uri "https://github.com/ppolushkin/report-gen/raw/master/prod
 
 # Update application.properties
 (Get-Content $applicationProperties).Replace("@PWD@", $pwd) | Set-Content $applicationProperties
+(Get-Content $applicationProperties).Replace("\", "/") | Set-Content $applicationProperties
