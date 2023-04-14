@@ -10,6 +10,8 @@ $applicationProperties="$pwd\application.properties"
 Invoke-WebRequest -Uri "https://github.com/ppolushkin/report-gen/raw/master/prod/report-generator-1.1.jar" -OutFile "$pwd\report-generator-1.1.jar"
 Invoke-WebRequest -Uri "https://github.com/ppolushkin/report-gen/raw/master/prod/application.properties" -OutFile $applicationProperties
 Invoke-WebRequest -Uri "https://github.com/ppolushkin/report-gen/raw/master/prod/generate.bat" -OutFile "$pwd\generate.bat"
+Invoke-WebRequest -Uri "https://github.com/ppolushkin/report-gen/raw/master/prod/README.md" -OutFile "$pwd\README.md"
+Invoke-WebRequest -Uri "https://github.com/ppolushkin/report-gen/raw/master/prod/img.png" -OutFile "$pwd\img.png"
 
 # Update application.properties
 (Get-Content $applicationProperties).Replace("@PWD@", $pwd) | Set-Content $applicationProperties
