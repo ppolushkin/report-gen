@@ -1,4 +1,5 @@
 # Report-gen
+Первый генератор отчетов. Он использует **Real-Time.xls** и генерирует *.doc файлы.
 
 ## Build
 `mvnw clean package`
